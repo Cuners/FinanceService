@@ -1,4 +1,6 @@
-﻿using Finance.Infrastructure.Persistence;
+﻿using Finance.Domain.Interfaces;
+using Finance.Infrastructure.Persistence;
+using Finance.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +16,10 @@ namespace Finance.Infrastructure.DependencyInjection
         {
             services.AddDbContext<BudgetDbContext>(options =>
                 options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
-
+            services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IBudgetRepository, BudgetRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
             return services;
         }
     }

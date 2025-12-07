@@ -8,6 +8,7 @@ namespace Finance.Domain.Interfaces
     {
         Task<Account?> GetAccountByAccountId(int id);
         Task<IEnumerable<Account>> GetAllAccounts();
+        Task<IEnumerable<Account>> GetAccountsByUserId(int userId);
         Task CreateAccount(Account account);
         Task UpdateAccount(Account account);
         Task DeleteAccount(int id);

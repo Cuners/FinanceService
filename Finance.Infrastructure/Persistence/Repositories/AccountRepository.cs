@@ -26,7 +26,13 @@ namespace Finance.Infrastructure.Persistence.Repositories
                 .AsNoTracking()
                 .ToListAsync();
         }
-
+        public async Task<IEnumerable<Account>> GetAccountsByUserId(int userId)
+        {
+            return await _context.Accounts
+                .AsNoTracking()
+                .Where(a => a.UserId == userId)
+                .ToListAsync();
+        }
         public async Task CreateAccount(Account account)
         {
             await _context.Accounts.AddAsync(account);
@@ -46,7 +52,14 @@ namespace Finance.Infrastructure.Persistence.Repositories
 
         public async Task SaveChangesAsync()
         {
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                var ax= ex.Message;
+            }
         }
     }
 }

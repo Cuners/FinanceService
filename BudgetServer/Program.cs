@@ -1,4 +1,5 @@
 using Finance.Infrastructure.DependencyInjection;
+using Finance.Application.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,6 +23,7 @@ builder.Services.AddCors(options =>
 }
 );
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -38,6 +40,6 @@ app.UseAuthorization();
 //{
 //    return Results.Ok("ok");
 //});
-
+app.MapControllers();
 
 app.Run();
