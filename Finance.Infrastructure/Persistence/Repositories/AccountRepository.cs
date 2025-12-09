@@ -47,7 +47,9 @@ namespace Finance.Infrastructure.Persistence.Repositories
         {
             var acc = await _context.Accounts.FindAsync(id);
             if (acc != null)
+            {
                 _context.Accounts.Remove(acc);
+            }
         }
 
         public async Task SaveChangesAsync()

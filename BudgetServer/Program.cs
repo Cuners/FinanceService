@@ -1,5 +1,8 @@
-using Finance.Infrastructure.DependencyInjection;
 using Finance.Application.DependencyInjection;
+using Finance.Application.UseCases;
+using Finance.Infrastructure.DependencyInjection;
+using Finance.Infrastructure.Persistence;
+using System;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,6 +25,7 @@ builder.Services.AddCors(options =>
         });
 }
 );
+builder.Services.AddScoped<IUnitOfWork>(provider => (IUnitOfWork)provider.GetRequiredService<BudgetDbContext>());
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 var app = builder.Build();

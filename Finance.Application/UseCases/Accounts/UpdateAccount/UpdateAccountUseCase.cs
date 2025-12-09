@@ -1,0 +1,45 @@
+﻿using Finance.Application.UseCases.Accounts.DeleteAccount.Response;
+using Finance.Application.UseCases.Accounts.UpdateAccount.Request;
+using Finance.Application.UseCases.Accounts.UpdateAccount.Response;
+using Finance.Domain.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Microsoft.Extensions.Logging;
+namespace Finance.Application.UseCases.Accounts.UpdateAccount
+{
+    public class UpdateAccountUseCase
+    {
+        private readonly IAccountRepository _account;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ILogger<UpdateAccountUseCase> _logger;
+        public UpdateAccountUseCase(IAccountRepository account,IUnitOfWork unitOfWork,ILogger<UpdateAccountUseCase> logger)
+        {
+            _account = account;
+            _unitOfWork = unitOfWork;
+            _logger = logger;
+        }
+        public async Task<UpdateAccountResponse> ExecuteAsync(UpdateAccountRequest request)
+        {
+            try
+            {
+                if (request == null)
+                {
+                    _logger.LogWarning("UpdateAccountRequest is null");
+                    return new UpdateAccountErrorResponse("Invalid account", "INVALID_ACCOUNT");
+                }
+                var account = await _account.GetAccountByAccountId(request.AccountId);
+                account.Balance = request.Balance;
+                account.Name = request.Name;
+                await _account.UpdateAccount(account);
+                await _unitOfWork.SaveChangesAsync();
+                return new UpdateAccountSuccessResponse(account.AccountId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, ex.Message);
+                return new UpdateAccountErrorResponse("Unable to update account at this time", "INVALID_UPDATE");
+            }
+        }
+    }
+}

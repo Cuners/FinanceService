@@ -1,5 +1,8 @@
 ﻿using Finance.Application.UseCases.Accounts.CreateAccount;
 using Finance.Application.UseCases.Accounts.GetAccountsByUserId;
+using Finance.Application.UseCases.Accounts.DeleteAccount;
+using Finance.Application.UseCases.Accounts.GetAccountById;
+using Finance.Application.UseCases.Accounts.UpdateAccount;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,10 +14,10 @@ namespace Finance.Application.DependencyInjection
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddScoped<CreateAccountUseCase>();
-            //services.AddScoped<GetAccountsUseCase>();
+            services.AddScoped<GetAccountByIdUseCase>();
             services.AddScoped<GetAccountsByUserIdUseCase>();
-            //services.AddScoped<DeleteAccountUseCase>();
-            //services.AddScoped<UpdateAccountUseCase>();
+            services.AddScoped<DeleteAccountUseCase>();
+            services.AddScoped<UpdateAccountUseCase>();
 
             return services;
         }

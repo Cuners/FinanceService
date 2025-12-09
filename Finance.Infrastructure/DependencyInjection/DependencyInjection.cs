@@ -16,6 +16,7 @@ namespace Finance.Infrastructure.DependencyInjection
         {
             services.AddDbContext<BudgetDbContext>(options =>
                 options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+            
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IBudgetRepository, BudgetRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
