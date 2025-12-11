@@ -24,7 +24,6 @@ namespace Finance.Infrastructure.Persistence
 
         public virtual DbSet<Transaction> Transactions { get; set; }
 
-
         public async Task SaveChangesAsync()
         {
             await base.SaveChangesAsync();

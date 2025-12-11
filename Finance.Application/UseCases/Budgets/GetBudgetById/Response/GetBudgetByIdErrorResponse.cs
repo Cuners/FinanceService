@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Finance.Application.UseCases.Budgets.GetBudgetById.Response
+{
+    public class GetBudgetByIdErrorResponse : GetBudgetByIdResponse
+    {
+        public GetBudgetByIdErrorResponse(string message,string code):
+            base(false,message,code) 
+        {
+
+        }
+
+    }
+}

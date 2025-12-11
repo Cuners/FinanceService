@@ -1,20 +1,21 @@
-﻿using System;
+﻿using Finance.Domain;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Finance.Domain
+namespace Finance.Application.UseCases.Budgets.UpdateBudget.Request
 {
-    public partial class Budget
+    public class UpdateBudgetRequest
     {
         public int BudgetId { get; set; }
-
-        public int UserId { get; set; }
 
         public string Name { get; set; } = null!;
 
         public decimal LimitAmount { get; set; }
 
-        public DateOnly Date { get; set; }
+        public int Month { get; set; }
+
+        public int Year { get; set; }
 
         public virtual ICollection<Category> Categories { get; set; } = new List<Category>();
     }

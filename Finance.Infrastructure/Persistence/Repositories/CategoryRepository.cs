@@ -14,37 +14,24 @@ namespace Finance.Infrastructure.Persistence.Repositories
         {
             _context = context;
         }
-        public async Task<Category?> GetCategoryByCategoryId(int id)
+        public async Task<Category?> GetCategoryById(int id)
         {
             return await _context.Categories
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.CategoryId == id);
         }
-
+        public async Task<IEnumerable<Category>> GetCategoriesById(List<int> ids)
+        {
+            return await _context.Categories
+                .Where(c => ids.Contains(c.CategoryId))
+                .ToListAsync();
+        }
         public async Task<IEnumerable<Category>> GetAllCategories()
         {
             return await _context.Categories
                 .AsNoTracking()
                 .ToListAsync();
         }
-
-        public async Task CreateCategory(Category Category)
-        {
-            await _context.Categories.AddAsync(Category);
-        }
-
-        public async Task UpdateCategory(Category Category)
-        {
-            _context.Categories.Update(Category);
-        }
-
-        public async Task DeleteCategory(int id)
-        {
-            var acc = await _context.Categories.FindAsync(id);
-            if (acc != null)
-                _context.Categories.Remove(acc);
-        }
-
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();

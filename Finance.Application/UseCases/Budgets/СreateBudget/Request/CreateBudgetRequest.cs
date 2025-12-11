@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Finance.Domain;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Finance.Domain
+namespace Finance.Application.UseCases.Budgets.СreateBudget.Request
 {
-    public partial class Budget
+    public class CreateBudgetRequest
     {
-        public int BudgetId { get; set; }
-
         public int UserId { get; set; }
 
         public string Name { get; set; } = null!;

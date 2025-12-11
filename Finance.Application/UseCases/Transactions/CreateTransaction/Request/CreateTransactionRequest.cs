@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Finance.Domain
+namespace Finance.Application.UseCases.Transactions.CreateTransaction.Request
 {
-    public partial class Transaction
+    public class CreateTransactionRequest
     {
-        public int TransactionId { get; set; }
-
         public int AccountId { get; set; }
 
         public int CategoryId { get; set; }
@@ -17,9 +15,5 @@ namespace Finance.Domain
         public DateOnly Date { get; set; }
 
         public string? Note { get; set; }
-
-        public virtual Account Account { get; set; } = null!;
-
-        public virtual Category Category { get; set; } = null!;
     }
 }

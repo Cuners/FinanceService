@@ -6,7 +6,7 @@ namespace Finance.Domain.Interfaces
 {
     public interface IBudgetRepository
     {
-        Task<Budget?> GetBudgetByBudgetId(int id);
+        Task<Budget?> GetBudgetById(int id);
         Task<IEnumerable<Budget>> GetAllBudgets();
         Task CreateBudget(Budget Budget);
         Task UpdateBudget(Budget Budget);

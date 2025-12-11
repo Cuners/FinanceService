@@ -6,11 +6,8 @@ namespace Finance.Domain.Interfaces
 {
     public interface ICategoryRepository
     {
-        Task<Category?> GetCategoryByCategoryId(int id);
+        Task<IEnumerable<Category>> GetCategoriesById(List<int> ids);
         Task<IEnumerable<Category>> GetAllCategories();
-        Task CreateCategory(Category Category);
-        Task UpdateCategory(Category Category);
-        Task DeleteCategory(int id);
         Task SaveChangesAsync();
     }
 }

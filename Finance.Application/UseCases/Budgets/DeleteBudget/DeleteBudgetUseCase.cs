@@ -1,0 +1,40 @@
+﻿using Finance.Application.UseCases.Budgets.DeleteBudget.Request;
+using Finance.Application.UseCases.Budgets.DeleteBudget.Response;
+using Finance.Domain.Interfaces;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Finance.Application.UseCases.Budgets.DeleteBudget
+{
+    public class DeleteBudgetUseCase
+    {
+        private readonly IBudgetRepository _Budget;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ILogger<DeleteBudgetUseCase> _logger;
+        public DeleteBudgetUseCase(IBudgetRepository Budget, IUnitOfWork unitOfWork, ILogger<DeleteBudgetUseCase> logger)
+        {
+            _Budget = Budget;
+            _unitOfWork = unitOfWork;
+            _logger = logger;
+        }
+        public async Task<DeleteBudgetResponse> ExecuteAsync(DeleteBudgetRequest request)
+        {
+            try
+            {
+                if (request == null)
+                    return new DeleteBudgetErrorResponse("Invalid Budget", "INVALID_Budget");
+                var Budget = await _Budget.GetBudgetById(request.BudgetId);
+                await _Budget.DeleteBudget(request.BudgetId);
+                await _unitOfWork.SaveChangesAsync();
+                return new DeleteBudgetSuccessResponse(request.BudgetId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, ex.Message);
+                return new DeleteBudgetErrorResponse("Unable to delete Budget at this time", "INVALID_DELETE");
+            }
+        }
+    }
+}

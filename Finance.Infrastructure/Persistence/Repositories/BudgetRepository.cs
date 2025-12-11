@@ -14,7 +14,7 @@ namespace Finance.Infrastructure.Persistence.Repositories
         {
             _context = context;
         }
-        public async Task<Budget?> GetBudgetByBudgetId(int id)
+        public async Task<Budget?> GetBudgetById(int id)
         {
             return await _context.Budgets
                 .AsNoTracking()
