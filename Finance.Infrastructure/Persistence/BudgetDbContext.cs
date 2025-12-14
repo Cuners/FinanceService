@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Finance.Domain;
+using Finance.Application.UseCases;
 
 namespace Finance.Infrastructure.Persistence
 {
-    public partial class BudgetDbContext : DbContext
+    public partial class BudgetDbContext : DbContext, IUnitOfWork
     {
         public BudgetDbContext()
         {

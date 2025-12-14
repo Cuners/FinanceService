@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
+using Finance.Application.UseCases.Budgets.СreateBudget;
 namespace Finance.Application.DependencyInjection
 {
     public static class DependencyInjection
@@ -18,7 +19,7 @@ namespace Finance.Application.DependencyInjection
             services.AddScoped<GetAccountsByUserIdUseCase>();
             services.AddScoped<DeleteAccountUseCase>();
             services.AddScoped<UpdateAccountUseCase>();
-
+            services.AddScoped<CreateBudgetUseCase>();
             return services;
         }
     }

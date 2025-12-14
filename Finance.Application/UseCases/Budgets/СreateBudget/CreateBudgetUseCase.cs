@@ -21,7 +21,6 @@ namespace Finance.Application.UseCases.Budgets.СreateBudget
         {
             _budgetRepository = budgetRepository;
             _categoryRepository = categoryRepository;
-            _unitOfWork = unitOfWork;
             _logger = logger;
         }
         public async Task<CreateBudgetResponse> ExecuteAsync(CreateBudgetRequest request)
@@ -33,7 +32,7 @@ namespace Finance.Application.UseCases.Budgets.СreateBudget
                     _logger.LogWarning("Request null");
                     return new CreateBudgetErrorResponse("REQUEST NULL", "REQ_NULL");
                 }
-                var categories=_categoryRepository.GetCategoriesById((List<int>)request.Categories);
+                var categories=await _categoryRepository.GetCategoriesById((List<int>)request.Categories);
                 var budget = new Domain.Budget
                 {
                     UserId = request.UserId,

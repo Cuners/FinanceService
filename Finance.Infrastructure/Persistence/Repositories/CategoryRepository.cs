@@ -23,7 +23,7 @@ namespace Finance.Infrastructure.Persistence.Repositories
         public async Task<IEnumerable<Category>> GetCategoriesById(List<int> ids)
         {
             return await _context.Categories
-                .Where(c => ids.Contains(c.CategoryId))
+                .Where(x => ids.Contains(x.CategoryId))
                 .ToListAsync();
         }
         public async Task<IEnumerable<Category>> GetAllCategories()

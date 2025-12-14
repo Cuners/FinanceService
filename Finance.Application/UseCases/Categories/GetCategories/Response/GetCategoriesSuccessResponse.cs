@@ -1,10 +1,18 @@
-﻿using System;
+﻿using Finance.Application.UseCases.Categories;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Finance.Application.UseCases.Categories.GetCategories.Response
 {
-    internal class GetCategoriesSuccessResponse
+    public class GetCategoriesSuccessResponse : GetCategoriesResponse
     {
+        public IEnumerable<CategoryDto> Categories { get; }
+
+        public GetCategoriesSuccessResponse(IEnumerable<CategoryDto> categories)
+            : base(true)
+        {
+            Categories = categories;
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace Finance.Infrastructure.Persistence.Repositories
         {
             return await _context.Accounts
                 .AsNoTracking()
-                .Where(a => a.UserId == userId)
+                .Where(x => x.UserId == userId)
                 .ToListAsync();
         }
         public async Task CreateAccount(Account account)

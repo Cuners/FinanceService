@@ -12,12 +12,10 @@ namespace Finance.Application.UseCases.Accounts.GetAccountById
     public class GetAccountByIdUseCase
     {
         private readonly IAccountRepository _accountRepository;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<GetAccountByIdUseCase> _logger;
-        public GetAccountByIdUseCase(IAccountRepository accountRepository, IUnitOfWork unitOfWork, ILogger<GetAccountByIdUseCase> logger)
+        public GetAccountByIdUseCase(IAccountRepository accountRepository, ILogger<GetAccountByIdUseCase> logger)
         {
             _accountRepository = accountRepository;
-            _unitOfWork = unitOfWork;
             _logger = logger;
         }
         public async Task<GetAccountByIdResponse> ExecuteAsync(GetAccountByIdRequest request)

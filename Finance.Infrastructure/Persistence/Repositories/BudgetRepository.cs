@@ -21,10 +21,12 @@ namespace Finance.Infrastructure.Persistence.Repositories
                 .FirstOrDefaultAsync(x => x.BudgetId == id);
         }
 
-        public async Task<IEnumerable<Budget>> GetAllBudgets()
+        public async Task<IEnumerable<Budget>> GetBudgetsByUserId(int userId)
         {
             return await _context.Budgets
                 .AsNoTracking()
+                .Include(x=>x.Categories)
+                .Where(x=>x.UserId == userId)
                 .ToListAsync();
         }
 

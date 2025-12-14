@@ -4,7 +4,13 @@ using System.Text;
 
 namespace Finance.Application.UseCases.Categories.GetCategories.Response
 {
-    internal class GetCategoriesErrorResponse
+    public class GetCategoriesErrorResponse : GetCategoriesResponse
     {
+        public GetCategoriesErrorResponse(string message,string code) :
+            base(false)
+        {
+
+        }
+
     }
 }

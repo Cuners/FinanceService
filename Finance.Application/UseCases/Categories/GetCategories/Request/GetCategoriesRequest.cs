@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Finance.Application.UseCases.Categories.GetCategories.Request
 {
-    internal class GetCategoriesRequest
+    public class GetCategoriesRequest
     {
+        public int CategoryId { get; set; } 
     }
 }

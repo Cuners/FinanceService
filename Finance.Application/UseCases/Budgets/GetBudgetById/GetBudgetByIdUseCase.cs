@@ -11,12 +11,10 @@ namespace Finance.Application.UseCases.Budgets.GetBudgetById
     public class GetBudgetByIdUseCase
     {
         private readonly IBudgetRepository _BudgetRepository;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<GetBudgetByIdUseCase> _logger;
-        public GetBudgetByIdUseCase(IBudgetRepository BudgetRepository, IUnitOfWork unitOfWork, ILogger<GetBudgetByIdUseCase> logger)
+        public GetBudgetByIdUseCase(IBudgetRepository BudgetRepository, ILogger<GetBudgetByIdUseCase> logger)
         {
             _BudgetRepository = BudgetRepository;
-            _unitOfWork = unitOfWork;
             _logger = logger;
         }
         public async Task<GetBudgetByIdResponse> ExecuteAsync(GetBudgetByIdRequest request)
