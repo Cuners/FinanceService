@@ -9,7 +9,6 @@ namespace Finance.Application.UseCases.Accounts.CreateAccount.Response
         public int AccountId { get; }
 
         public CreateAccountSuccessResponse(int id)
-            : base(true)
         {
             AccountId = id;
         }

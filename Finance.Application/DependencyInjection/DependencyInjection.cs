@@ -8,6 +8,14 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Finance.Application.UseCases.Budgets.СreateBudget;
+using Finance.Application.UseCases.Budgets.DeleteBudget;
+using Finance.Application.UseCases.Budgets.GetBudgetById;
+using Finance.Application.UseCases.Budgets.GetBudgetsByUserId;
+using Finance.Application.UseCases.Budgets.UpdateBudget;
+using Finance.Application.UseCases.Categories.GetCategories;
+using Finance.Application.UseCases.Transactions.CreateTransaction;
+using Finance.Application.UseCases.Transactions.DeleteTransaction;
+using Finance.Application.UseCases.Transactions.GetTransactionById;
 namespace Finance.Application.DependencyInjection
 {
     public static class DependencyInjection
@@ -20,6 +28,14 @@ namespace Finance.Application.DependencyInjection
             services.AddScoped<DeleteAccountUseCase>();
             services.AddScoped<UpdateAccountUseCase>();
             services.AddScoped<CreateBudgetUseCase>();
+            services.AddScoped<DeleteBudgetUseCase>();
+            services.AddScoped<GetBudgetByIdUseCase>();
+            services.AddScoped<GetBudgetsByUserIdUseCase>();
+            services.AddScoped<UpdateBudgetUseCase>();
+            services.AddScoped<GetCategoriesUseCase>();
+            services.AddScoped<CreateTransactionUseCase>();
+            services.AddScoped<DeleteTransactionUseCase>();
+            services.AddScoped<GetTransactionByIdUseCase>();
             return services;
         }
     }

@@ -7,9 +7,12 @@ namespace Finance.Application.UseCases.Accounts.GetAccountById.Response
 {
     public class GetAccountByIdErrorResponse : GetAccountByIdResponse
     {
+        public string Message { get; }
+        public string Code { get; }
         public GetAccountByIdErrorResponse(string message, string code)
-            : base(false, message, code)
         {
+            Message=message;
+            Code=code;
         }
     }
 }

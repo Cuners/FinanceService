@@ -9,7 +9,6 @@ namespace Finance.Application.UseCases.Accounts.GetAccountsByUserId.Response
         public IEnumerable<AccountDto> Accounts { get; }
 
         public GetAccountsByUserIdSuccessResponse(IEnumerable<AccountDto> accounts)
-            : base(true)
         {
             Accounts = accounts;
         }

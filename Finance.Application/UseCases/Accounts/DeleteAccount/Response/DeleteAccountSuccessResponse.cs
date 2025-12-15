@@ -10,7 +10,6 @@ namespace Finance.Application.UseCases.Accounts.DeleteAccount.Response
         public int AccountId { get; }
 
         public DeleteAccountSuccessResponse(int id)
-            : base(true)
         {
             AccountId = id;
         }

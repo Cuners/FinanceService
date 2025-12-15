@@ -7,8 +7,7 @@ namespace Finance.Application.UseCases.Transactions.DeleteTransaction.Response
     public class DeleteTransactionSuccessRepsonse : DeleteTransactionResponse
     {
         public int TransactionId { get; set; }
-        public DeleteTransactionSuccessRepsonse(int id) :
-            base(true)
+        public DeleteTransactionSuccessRepsonse(int id)
         {
             TransactionId = id;
         }

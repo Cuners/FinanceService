@@ -6,10 +6,10 @@ namespace Finance.Application.UseCases.Transactions.CreateTransaction.Response
 {
     public class CreateTransactionSuccessRepsonse : CreateTransactionResponse
     {
-        public CreateTransactionSuccessRepsonse(string message, string code):
-            base(true, message, code) 
+        public int TransactionId { get; set; }
+        public CreateTransactionSuccessRepsonse(int id)
         {
-
+            TransactionId = id;
         }
     }
 }

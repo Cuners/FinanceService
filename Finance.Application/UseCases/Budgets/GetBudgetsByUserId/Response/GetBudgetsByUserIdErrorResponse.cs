@@ -6,10 +6,12 @@ namespace Finance.Application.UseCases.Budgets.GetBudgetsByUserId.Response
 {
     public class GetBudgetsByUserIdErrorResponse : GetBudgetsByUserIdResponse
     {
-        public GetBudgetsByUserIdErrorResponse(string message, string code) :
-        base(false, message, code)
+        public string Message { get; }
+        public string Code { get; }
+        public GetBudgetsByUserIdErrorResponse(string message, string code)
         {
-
+            Message = message;
+            Code = code;
         }
     }
 }

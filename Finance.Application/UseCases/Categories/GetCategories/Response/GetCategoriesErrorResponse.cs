@@ -6,10 +6,12 @@ namespace Finance.Application.UseCases.Categories.GetCategories.Response
 {
     public class GetCategoriesErrorResponse : GetCategoriesResponse
     {
-        public GetCategoriesErrorResponse(string message,string code) :
-            base(false)
+        public string Message { get; }
+        public string Code { get; }
+        public GetCategoriesErrorResponse(string message, string code)
         {
-
+            Message = message;
+            Code = code;
         }
 
     }

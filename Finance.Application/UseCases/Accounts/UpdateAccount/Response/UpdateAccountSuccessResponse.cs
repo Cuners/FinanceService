@@ -9,7 +9,6 @@ namespace Finance.Application.UseCases.Accounts.UpdateAccount.Response
         public int AccountId { get; }
 
         public UpdateAccountSuccessResponse(int id)
-            : base(true)
         {
             AccountId = id;
         }

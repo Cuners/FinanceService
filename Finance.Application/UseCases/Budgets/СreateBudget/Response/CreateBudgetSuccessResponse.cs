@@ -7,8 +7,7 @@ namespace Finance.Application.UseCases.Budgets.СreateBudget.Response
     public class CreateBudgetSuccessResponse : CreateBudgetResponse
     {
         public int BudgetId {  get; set; }
-        public CreateBudgetSuccessResponse(int id) :
-            base(true)
+        public CreateBudgetSuccessResponse(int id) 
         { 
             BudgetId = id;
         }

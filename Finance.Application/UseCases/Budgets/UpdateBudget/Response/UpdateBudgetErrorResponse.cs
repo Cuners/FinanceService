@@ -6,10 +6,12 @@ namespace Finance.Application.UseCases.Budgets.UpdateBudget.Response
 {
     public class UpdateBudgetErrorResponse: UpdateBudgetResponse
     {
-        public UpdateBudgetErrorResponse(string message,string code):
-            base(false, message, code)
+        public string Message { get; }
+        public string Code { get; }
+        public UpdateBudgetErrorResponse(string message, string code)
         {
-
+            Message = message;
+            Code = code;
         }
     }
 }

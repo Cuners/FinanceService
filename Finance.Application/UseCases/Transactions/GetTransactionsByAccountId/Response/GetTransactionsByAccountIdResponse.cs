@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Finance.Application.UseCases.Transactions.GetTransactionsByAccountId.Response
 {
-    internal class GetTransactionsByAccountIdResponse
+    public class GetTransactionsByAccountIdResponse : UseCases.Response
     {
     }
 }

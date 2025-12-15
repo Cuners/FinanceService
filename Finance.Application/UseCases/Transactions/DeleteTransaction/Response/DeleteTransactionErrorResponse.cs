@@ -6,10 +6,12 @@ namespace Finance.Application.UseCases.Transactions.DeleteTransaction.Response
 {
     public class DeleteTransactionErrorResponse : DeleteTransactionResponse
     {
-        public DeleteTransactionErrorResponse(string message,string code): base
-            (false, message, code)
+        public string Message { get; }
+        public string Code { get; }
+        public DeleteTransactionErrorResponse(string message, string code)
         {
-
+            Message = message;
+            Code = code;
         }
     }
 }

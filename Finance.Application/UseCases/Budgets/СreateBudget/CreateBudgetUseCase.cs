@@ -21,6 +21,7 @@ namespace Finance.Application.UseCases.Budgets.СreateBudget
         {
             _budgetRepository = budgetRepository;
             _categoryRepository = categoryRepository;
+            _unitOfWork=unitOfWork;
             _logger = logger;
         }
         public async Task<CreateBudgetResponse> ExecuteAsync(CreateBudgetRequest request)
@@ -47,7 +48,7 @@ namespace Finance.Application.UseCases.Budgets.СreateBudget
             }
             catch (Exception ex) 
             {
-                _logger.LogWarning(ex,ex.Message);
+                _logger.LogWarning(ex,ex.Message,request.Name);
                 return new CreateBudgetErrorResponse("INVALID BUDGET", "");
             }
         } 

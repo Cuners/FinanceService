@@ -36,7 +36,7 @@ namespace Finance.Application.UseCases.Budgets.UpdateBudget
             }
             catch (Exception ex)
             {
-                _logger.LogWarning(ex, ex.Message);
+                _logger.LogWarning(ex, ex.Message,request.BudgetId);
                 return new UpdateBudgetErrorResponse("Unable to update Budget at this time", "INVALID_UPDATE");
             }
         }

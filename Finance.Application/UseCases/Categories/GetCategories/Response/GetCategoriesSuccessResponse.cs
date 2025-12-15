@@ -10,7 +10,6 @@ namespace Finance.Application.UseCases.Categories.GetCategories.Response
         public IEnumerable<CategoryDto> Categories { get; }
 
         public GetCategoriesSuccessResponse(IEnumerable<CategoryDto> categories)
-            : base(true)
         {
             Categories = categories;
         }

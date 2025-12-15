@@ -6,8 +6,8 @@ namespace Finance.Application.UseCases.Accounts
 {
     public class AccountDto
     {
-        public int AccountId { get; set; }
-        public string Name { get; set; } = "";
-        public decimal Balance { get; set; }
+        public int AccountId { get; init; }
+        public string Name { get; init; } = "";
+        public decimal Balance { get; init; }
     }
 }

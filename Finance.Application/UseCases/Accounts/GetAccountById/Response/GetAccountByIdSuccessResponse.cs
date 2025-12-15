@@ -7,12 +7,11 @@ namespace Finance.Application.UseCases.Accounts.GetAccountById.Response
 {
     public class GetAccountByIdSuccessResponse : GetAccountByIdResponse
     {
-        public int AccountId { get; }
+        public AccountDto Account { get; }
 
-        public GetAccountByIdSuccessResponse(int id)
-            : base(true)
+        public GetAccountByIdSuccessResponse(AccountDto accountDto)
         {
-            AccountId = id;
+            Account = accountDto;
         }
     }
 }

@@ -6,10 +6,12 @@ namespace Finance.Application.UseCases.Transactions.GetTransactionById.Response
 {
     public class GetTransactionByIdErrorResponse : GetTransactionByIdResponse
     {
-        public GetTransactionByIdErrorResponse(string message, string code):
-            base(false, message, code) 
+        public string Message { get; }
+        public string Code { get; }
+        public GetTransactionByIdErrorResponse(string message, string code)
         {
-
+            Message = message;
+            Code = code;
         }
     }
 }

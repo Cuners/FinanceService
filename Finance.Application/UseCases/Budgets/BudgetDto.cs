@@ -7,13 +7,13 @@ namespace Finance.Application.UseCases.Budgets
 {
     public class BudgetDto
     {
-        public int BudgetId { get; set; }
-        public string Name { get; set; } = null!;
+        public int BudgetId { get; init; }
+        public string Name { get; init; } = null!;
 
-        public decimal LimitAmount { get; set; }
+        public decimal LimitAmount { get; init; }
 
-        public DateOnly Date { get; set; }
+        public DateOnly Date { get; init; }
 
-        public virtual ICollection<Category> Categories { get; set; } = new List<Category>();
+        public ICollection<Category> Categories { get; init; } = new List<Category>();
     }
 }

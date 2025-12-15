@@ -7,8 +7,7 @@ namespace Finance.Application.UseCases.Budgets.DeleteBudget.Response
     public class DeleteBudgetSuccessResponse : DeleteBudgetResponse
     {
         public int BudgetId {  get; set; }
-        public DeleteBudgetSuccessResponse(int id):
-            base(true)
+        public DeleteBudgetSuccessResponse(int id)
         {
             BudgetId = id;
         }

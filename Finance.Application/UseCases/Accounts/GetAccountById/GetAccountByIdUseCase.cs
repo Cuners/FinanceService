@@ -27,13 +27,19 @@ namespace Finance.Application.UseCases.Accounts.GetAccountById
                     _logger.LogWarning("GetAccountRequest is null");
                     return new GetAccountByIdErrorResponse("Invalid account id", "INVALID_USER_ID");
                 }
-                var accounts = _accountRepository.GetAccountByAccountId(request.AccountId);
+                var accounts = await _accountRepository.GetAccountByAccountId(request.AccountId);
                 if (accounts == null)
                 {
                     _logger.LogWarning("GetAccountRequest is null");
                     return new GetAccountByIdErrorResponse("No account found", "ACCOUNT_NOT_FOUND");
                 }
-                return new GetAccountByIdSuccessResponse(request.AccountId);
+                var result = new AccountDto
+                {
+                    AccountId = accounts.AccountId,
+                    Name = accounts.Name,
+                    Balance = accounts.Balance
+                };
+                return new GetAccountByIdSuccessResponse(result);
             }
             catch(Exception ex)
             {

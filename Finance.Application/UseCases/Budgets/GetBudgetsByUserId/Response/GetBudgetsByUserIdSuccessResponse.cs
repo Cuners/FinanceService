@@ -10,7 +10,6 @@ namespace Finance.Application.UseCases.Budgets.GetBudgetsByUserId.Response
         public IEnumerable<BudgetDto> Budgets { get; }
 
         public GetBudgetsByUserIdSuccessResponse(IEnumerable<BudgetDto> budgets)
-            : base(true)
         {
             Budgets = budgets;
         }
