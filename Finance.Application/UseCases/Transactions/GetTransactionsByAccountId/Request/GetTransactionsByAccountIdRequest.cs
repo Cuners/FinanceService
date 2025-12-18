@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Finance.Application.UseCases.Transactions.GetTransactionsByAccountId.Request
 {
-    internal class GetTransactionsByAccountIdRequest
+    public class GetTransactionsByAccountIdRequest
     {
+        public int AccountId {  get; set; }
     }
 }

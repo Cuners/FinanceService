@@ -11,6 +11,5 @@ namespace Finance.Domain.Interfaces
         Task CreateBudget(Budget Budget);
         Task UpdateBudget(Budget Budget);
         Task DeleteBudget(int id);
-        Task SaveChangesAsync();
     }
 }

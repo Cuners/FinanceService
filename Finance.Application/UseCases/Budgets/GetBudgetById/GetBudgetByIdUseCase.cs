@@ -1,5 +1,7 @@
-﻿using Finance.Application.UseCases.Budgets.GetBudgetById.Request;
+﻿using Finance.Application.UseCases.Accounts;
+using Finance.Application.UseCases.Budgets.GetBudgetById.Request;
 using Finance.Application.UseCases.Budgets.GetBudgetById.Response;
+using Finance.Domain;
 using Finance.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
 using System;
@@ -26,13 +28,22 @@ namespace Finance.Application.UseCases.Budgets.GetBudgetById
                     _logger.LogWarning("GetBudgetRequest is null");
                     return new GetBudgetByIdErrorResponse("Invalid Budget id", "INVALID_USER_ID");
                 }
-                var Budgets = _BudgetRepository.GetBudgetById(request.BudgetId);
-                if (Budgets == null)
+                var budgets = await _BudgetRepository.GetBudgetById(request.BudgetId);
+
+                if (budgets == null)
                 {
                     _logger.LogWarning("GetBudgetRequest is null");
                     return new GetBudgetByIdErrorResponse("No Budget found", "Budget_NOT_FOUND");
                 }
-                return new GetBudgetByIdSuccessResponse(request.BudgetId);
+                var result = new BudgetDto
+                {
+                    BudgetId = budgets.BudgetId,
+                    Name = budgets.Name,
+                    LimitAmount = budgets.LimitAmount,
+                    Date = budgets.Date,
+                    Categories = budgets.Categories
+                };
+                return new GetBudgetByIdSuccessResponse(result);
             }
             catch (Exception ex)
             {

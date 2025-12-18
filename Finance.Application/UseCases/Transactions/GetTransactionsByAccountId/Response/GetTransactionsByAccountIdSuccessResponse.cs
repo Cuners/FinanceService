@@ -6,6 +6,11 @@ namespace Finance.Application.UseCases.Transactions.GetTransactionsByAccountId.R
 {
     public class GetTransactionsByAccountIdSuccessResponse : GetTransactionsByAccountIdResponse
     {
+        public IEnumerable<TransactionDto> Transactions { get; set; }
+        public GetTransactionsByAccountIdSuccessResponse(IEnumerable<TransactionDto> transactions) 
+        {
+            Transactions = transactions;
+        } 
 
     }
 }

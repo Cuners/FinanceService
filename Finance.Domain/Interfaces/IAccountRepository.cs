@@ -12,6 +12,5 @@ namespace Finance.Domain.Interfaces
         Task CreateAccount(Account account);
         Task UpdateAccount(Account account);
         Task DeleteAccount(int id);
-        Task SaveChangesAsync();
     }
 }

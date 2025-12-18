@@ -18,6 +18,7 @@ namespace Finance.Infrastructure.Persistence.Repositories
         {
             return await _context.Budgets
                 .AsNoTracking()
+                .Include(x => x.Categories)
                 .FirstOrDefaultAsync(x => x.BudgetId == id);
         }
 

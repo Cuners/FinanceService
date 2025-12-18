@@ -1,5 +1,6 @@
 ﻿using Finance.Application.UseCases.Categories.GetCategories.Request;
 using Finance.Application.UseCases.Categories.GetCategories.Response;
+using Finance.Application.UseCases.Transactions.GetTransactionsByAccountId.Response;
 using Finance.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
 using System;
@@ -18,17 +19,26 @@ namespace Finance.Application.UseCases.Categories.GetCategories
             _logger = logger;
         }
         public async Task<GetCategoriesResponse> ExecuteAsync()
-        {   
-            var categories=await _categories.GetAllCategories();
-            if (categories == null)
+        {
+            try
             {
-                return new GetCategoriesErrorResponse("Invalid Categories", "Invalid Category");
+                var categories = await _categories.GetAllCategories();
+                if (!categories.Any() || categories == null)
+                {
+                    _logger.LogError("Categories is null");
+                    return new GetCategoriesErrorResponse("Invalid Categories", "Invalid Category");
+                }
+                var result = categories.Select(x => new CategoryDto
+                {
+                    Name = x.Name
+                });
+                return new GetCategoriesSuccessResponse(result);
             }
-            var result=categories.Select(x=>new CategoryDto
+            catch(Exception ex)
             {
-                Name=x.Name
-            });
-            return new GetCategoriesSuccessResponse(result);
+                _logger.LogWarning(ex, ex.Message);
+                return new GetCategoriesErrorResponse("Unable to get Categories at this time", "INVALID_CATEGORIES");
+            }
         }
 
     }

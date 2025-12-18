@@ -49,7 +49,7 @@ namespace Finance.Application.UseCases.Budgets.СreateBudget
             catch (Exception ex) 
             {
                 _logger.LogWarning(ex,ex.Message,request.Name);
-                return new CreateBudgetErrorResponse("INVALID BUDGET", "");
+                return new CreateBudgetErrorResponse("INVALID TO CREATE BUDGET", "INVALID_CREATE");
             }
         } 
     }

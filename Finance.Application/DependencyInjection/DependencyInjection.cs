@@ -16,6 +16,7 @@ using Finance.Application.UseCases.Categories.GetCategories;
 using Finance.Application.UseCases.Transactions.CreateTransaction;
 using Finance.Application.UseCases.Transactions.DeleteTransaction;
 using Finance.Application.UseCases.Transactions.GetTransactionById;
+using Finance.Application.UseCases.Transactions.GetTransactionsByAccountId;
 namespace Finance.Application.DependencyInjection
 {
     public static class DependencyInjection
@@ -35,6 +36,7 @@ namespace Finance.Application.DependencyInjection
             services.AddScoped<GetCategoriesUseCase>();
             services.AddScoped<CreateTransactionUseCase>();
             services.AddScoped<DeleteTransactionUseCase>();
+            services.AddScoped<GetTransactionsByAccountIdUseCase>();
             services.AddScoped<GetTransactionByIdUseCase>();
             return services;
         }

@@ -28,6 +28,7 @@ namespace Finance.Application.UseCases.Accounts.CreateAccount
             {
                 if (string.IsNullOrWhiteSpace(request.Name))
                 {
+                    _logger.LogWarning("CreateAccountRequest is null");
                     return new CreateAccountErrorResponse("Account name is empty", "ACC_EMPTY_NAME");
                 }
                 var account = new Domain.Account

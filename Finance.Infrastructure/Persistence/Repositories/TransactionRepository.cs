@@ -18,13 +18,18 @@ namespace Finance.Infrastructure.Persistence.Repositories
         {
             return await _context.Transactions
                 .AsNoTracking()
+                .Include(x => x.Account)
+                .Include(x => x.Category)
                 .FirstOrDefaultAsync(x => x.TransactionId == id);
         }
 
-        public async Task<IEnumerable<Transaction>> GetAllTransactions()
+        public async Task<IEnumerable<Transaction>> GetTransactionsByAccountId(int id)
         {
             return await _context.Transactions
                 .AsNoTracking()
+                .Include(x => x.Account)
+                .Include(x => x.Category)
+                .Where(x=>x.AccountId == id)
                 .ToListAsync();
         }
 

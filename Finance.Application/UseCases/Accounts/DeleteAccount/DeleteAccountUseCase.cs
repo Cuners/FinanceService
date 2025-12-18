@@ -26,7 +26,10 @@ namespace Finance.Application.UseCases.Accounts.DeleteAccount
             try
             {
                 if (request == null)
+                {
+                    _logger.LogWarning("DeleteAccountRequest is null");
                     return new DeleteAccountErrorResponse("Invalid account", "INVALID_ACCOUNT");
+                }
                 var account = await _account.GetAccountByAccountId(request.AccountId);
                 await _account.DeleteAccount(request.AccountId);
                 await _unitOfWork.SaveChangesAsync();

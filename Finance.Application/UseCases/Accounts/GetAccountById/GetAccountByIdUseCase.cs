@@ -24,13 +24,13 @@ namespace Finance.Application.UseCases.Accounts.GetAccountById
             {
                 if (request.AccountId <= 0)
                 {
-                    _logger.LogWarning("GetAccountRequest is null");
+                    _logger.LogWarning("GetAccountRequest is invalid");
                     return new GetAccountByIdErrorResponse("Invalid account id", "INVALID_USER_ID");
                 }
                 var accounts = await _accountRepository.GetAccountByAccountId(request.AccountId);
                 if (accounts == null)
                 {
-                    _logger.LogWarning("GetAccountRequest is null");
+                    _logger.LogWarning("GetAccountRequest account is null");
                     return new GetAccountByIdErrorResponse("No account found", "ACCOUNT_NOT_FOUND");
                 }
                 var result = new AccountDto

@@ -9,6 +9,5 @@ namespace Finance.Domain.Interfaces
         Task<IEnumerable<Category>> GetCategoriesById(List<int> ids);
         Task<IEnumerable<Category>> GetAllCategories();
         Task<Category?> GetCategoryById(int id);
-        Task SaveChangesAsync();
     }
 }
