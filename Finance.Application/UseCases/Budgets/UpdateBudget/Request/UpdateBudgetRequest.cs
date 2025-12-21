@@ -13,9 +13,7 @@ namespace Finance.Application.UseCases.Budgets.UpdateBudget.Request
 
         public decimal LimitAmount { get; set; }
 
-        public int Month { get; set; }
-
-        public int Year { get; set; }
+        public DateOnly Date { get; set; }
 
         public virtual ICollection<Category> Categories { get; set; } = new List<Category>();
     }

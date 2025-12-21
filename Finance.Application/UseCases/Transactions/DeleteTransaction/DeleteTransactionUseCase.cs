@@ -29,8 +29,6 @@ namespace Finance.Application.UseCases.Transactions.DeleteTransaction
         {
             try
             {
-                if (request == null)
-                    return new DeleteTransactionErrorResponse("Invalid Transaction", "INVALID_Transaction");
                 var Transaction = await _transaction.GetTransactionByTransactionId(request.TransactionId);
                 await _transaction.DeleteTransaction(request.TransactionId);
                 await _unitOfWork.SaveChangesAsync();

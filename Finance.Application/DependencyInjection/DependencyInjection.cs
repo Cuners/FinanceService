@@ -17,6 +17,9 @@ using Finance.Application.UseCases.Transactions.CreateTransaction;
 using Finance.Application.UseCases.Transactions.DeleteTransaction;
 using Finance.Application.UseCases.Transactions.GetTransactionById;
 using Finance.Application.UseCases.Transactions.GetTransactionsByAccountId;
+using FluentValidation;
+using Finance.Application.Validators;
+using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 namespace Finance.Application.DependencyInjection
 {
     public static class DependencyInjection
@@ -38,6 +41,8 @@ namespace Finance.Application.DependencyInjection
             services.AddScoped<DeleteTransactionUseCase>();
             services.AddScoped<GetTransactionsByAccountIdUseCase>();
             services.AddScoped<GetTransactionByIdUseCase>();
+            services.AddValidatorsFromAssemblyContaining<CreateAccountRequestValidator>();
+            services.AddFluentValidationAutoValidation();
             return services;
         }
     }

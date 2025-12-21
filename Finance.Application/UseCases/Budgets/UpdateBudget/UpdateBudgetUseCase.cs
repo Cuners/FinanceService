@@ -23,11 +23,6 @@ namespace Finance.Application.UseCases.Budgets.UpdateBudget
         {
             try
             {
-                if (request == null)
-                {
-                    _logger.LogWarning("UpdateBudgetRequest is null");
-                    return new UpdateBudgetErrorResponse("Invalid Budget", "INVALID_Budget");
-                }
                 var Budget = await _Budget.GetBudgetById(request.BudgetId);
                 Budget.Name = request.Name;
                 await _Budget.UpdateBudget(Budget);

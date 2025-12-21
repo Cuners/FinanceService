@@ -34,10 +34,6 @@ namespace Finance.Application.UseCases.Transactions.CreateTransaction
         {
             try
             {
-                if (request.Amount == 0)
-                {
-                    return new CreateTransactionErrorResponse("Amount cannot be zero", "INVALID_AMOUNT");
-                }
                 var account = await _accountRepository.GetAccountByAccountId(request.AccountId);
                 if (account == null)
                 {
@@ -66,7 +62,7 @@ namespace Finance.Application.UseCases.Transactions.CreateTransaction
             catch (Exception ex)
             {
                 _logger.LogWarning(ex, "Error creating transaction for user");
-                return new CreateTransactionErrorResponse("Failed to create transaction", "INTERNAL_ERROR");
+                return new CreateTransactionErrorResponse("Unable to create transaction", "INTERNAL_ERROR");
             }
         }
     }

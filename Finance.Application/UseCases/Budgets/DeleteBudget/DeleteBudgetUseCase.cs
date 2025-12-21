@@ -23,11 +23,6 @@ namespace Finance.Application.UseCases.Budgets.DeleteBudget
         {
             try
             {
-                if (request == null)
-                {
-                    _logger.LogWarning("DeleteBudgetRequest is null");
-                    return new DeleteBudgetErrorResponse("Invalid Budget", "INVALID_Budget");
-                }
                 var Budget = await _Budget.GetBudgetById(request.BudgetId);
                 await _Budget.DeleteBudget(request.BudgetId);
                 await _unitOfWork.SaveChangesAsync();

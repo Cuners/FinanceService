@@ -23,11 +23,6 @@ namespace Finance.Application.UseCases.Accounts.UpdateAccount
         {
             try
             {
-                if (request == null)
-                {
-                    _logger.LogWarning("UpdateAccountRequest is null");
-                    return new UpdateAccountErrorResponse("Invalid account", "INVALID_ACCOUNT");
-                }
                 var account = await _account.GetAccountByAccountId(request.AccountId);
                 account.Balance = request.Balance;
                 account.Name = request.Name;

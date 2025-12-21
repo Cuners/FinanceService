@@ -28,11 +28,6 @@ namespace Finance.Application.UseCases.Budgets.СreateBudget
         {
             try
             {
-                if (request == null)
-                {
-                    _logger.LogWarning("Request null");
-                    return new CreateBudgetErrorResponse("REQUEST NULL", "REQ_NULL");
-                }
                 var categories=await _categoryRepository.GetCategoriesById((List<int>)request.Categories);
                 var budget = new Domain.Budget
                 {
@@ -49,7 +44,7 @@ namespace Finance.Application.UseCases.Budgets.СreateBudget
             catch (Exception ex) 
             {
                 _logger.LogWarning(ex,ex.Message,request.Name);
-                return new CreateBudgetErrorResponse("INVALID TO CREATE BUDGET", "INVALID_CREATE");
+                return new CreateBudgetErrorResponse("Unable TO CREATE BUDGET at this time", "INVALID_CREATE");
             }
         } 
     }

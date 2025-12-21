@@ -28,11 +28,6 @@ namespace Finance.Application.UseCases.Budgets.GetBudgetsByUserId
         {
             try
             {
-                if (request == null)
-                {
-                    _logger.LogWarning("GetBudgetRequest is null");
-                    return new GetBudgetsByUserIdErrorResponse("Invalid Budget", "INVALID_Budget");
-                }
                 var budgets = await _budget.GetBudgetsByUserId(request.UserId);
                 var result = budgets.Select(x => new BudgetDto
                 {

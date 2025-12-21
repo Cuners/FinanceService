@@ -23,11 +23,6 @@ namespace Finance.Application.UseCases.Transactions.GetTransactionsByAccountId
         {
             try
             {
-                if (request == null)
-                {
-                    _logger.LogWarning("GetTransactionRequest is null");
-                    return new GetTransactionsByAccountIdErrorResponse("Invalid Transaction", "INVALID_Transaction");
-                }
                 var Transactions = await _Transaction.GetTransactionsByAccountId(request.AccountId);
                 var result = Transactions.Select(x => new TransactionDto
                 {

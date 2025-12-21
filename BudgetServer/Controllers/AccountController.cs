@@ -13,7 +13,9 @@ using Finance.Application.UseCases.Accounts.GetAccountsByUserId.Response;
 using Finance.Application.UseCases.Accounts.UpdateAccount;
 using Finance.Application.UseCases.Accounts.UpdateAccount.Request;
 using Finance.Application.UseCases.Accounts.UpdateAccount.Response;
+using Finance.Application.Validators;
 using Finance.Domain;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -29,7 +31,11 @@ namespace BudgetServer.Controllers
         private readonly DeleteAccountUseCase _deleteAccount;
         private readonly GetAccountByIdUseCase _getAccountById;
         private readonly UpdateAccountUseCase _updateAccount;
-        public AccountController(CreateAccountUseCase createAccount, GetAccountsByUserIdUseCase getAccounts, DeleteAccountUseCase deleteAccount, GetAccountByIdUseCase getAccountById, UpdateAccountUseCase updateAccount)
+        public AccountController(CreateAccountUseCase createAccount, 
+                                GetAccountsByUserIdUseCase getAccounts, 
+                                DeleteAccountUseCase deleteAccount, 
+                                GetAccountByIdUseCase getAccountById, 
+                                UpdateAccountUseCase updateAccount)
         {
             _createAccount = createAccount;
             _getAccounts = getAccounts;
@@ -55,6 +61,7 @@ namespace BudgetServer.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Account>> GetAccountById(int id)
         {
+            
             var request = new GetAccountByIdRequest { AccountId = id };
             var response = await _getAccountById.ExecuteAsync(request);
 
@@ -64,8 +71,7 @@ namespace BudgetServer.Controllers
         public async Task<ActionResult> Create(CreateAccountRequest request)
         {
             var response = await _createAccount.ExecuteAsync(request);
-            var success = (CreateAccountSuccessResponse)response;
-            return Ok(response);
+            return Ok(request);
         }
         [HttpPut("{id}")]
         public async Task<ActionResult<Account>> Put(UpdateAccountRequest request)

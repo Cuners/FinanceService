@@ -14,7 +14,7 @@ namespace Finance.Application.UseCases.Accounts.CreateAccount
         private readonly IAccountRepository _accounts;
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<CreateAccountUseCase> _logger;
-
+       
         public CreateAccountUseCase(IAccountRepository accounts, IUnitOfWork unitOfWork, ILogger<CreateAccountUseCase> logger)
         {
             _accounts = accounts;
@@ -26,11 +26,6 @@ namespace Finance.Application.UseCases.Accounts.CreateAccount
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(request.Name))
-                {
-                    _logger.LogWarning("CreateAccountRequest is null");
-                    return new CreateAccountErrorResponse("Account name is empty", "ACC_EMPTY_NAME");
-                }
                 var account = new Domain.Account
                 {
                     UserId = request.UserId,
@@ -39,7 +34,6 @@ namespace Finance.Application.UseCases.Accounts.CreateAccount
                 };
                 await _accounts.CreateAccount(account);
                 await _unitOfWork.SaveChangesAsync();
-
                 return new CreateAccountSuccessResponse(account.AccountId);
             }
             catch(Exception ex)
