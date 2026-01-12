@@ -13,9 +13,9 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["BudgetServer/BudgetServer.csproj", "BudgetServer/"]
-COPY ["Finance.Application/Finance.Application.csproj", "Finance.Application/"]
-COPY ["Finance.Domain/Finance.Domain.csproj", "Finance.Domain/"]
-COPY ["Finance.Infrastructure/Finance.Infrastructure.csproj", "Finance.Infrastructure/"]
+COPY ["BudgetServer/Finance.Application.csproj", "Finance.Application/"]
+COPY ["BudgetServer/Finance.Infrastructure.csproj", "Finance.Infrastructure/"]
+COPY ["BudgetServer/Finance.Domain.csproj", "Finance.Domain/"]
 RUN dotnet restore "./BudgetServer/BudgetServer.csproj"
 COPY . .
 WORKDIR "/src/BudgetServer"
@@ -30,4 +30,5 @@ RUN dotnet publish "./BudgetServer.csproj" -c $BUILD_CONFIGURATION -o /app/publi
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+ENV ASPNETCORE_ENVIRONMENT=Development
 ENTRYPOINT ["dotnet", "BudgetServer.dll"]

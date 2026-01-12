@@ -46,25 +46,25 @@ namespace BudgetServer.Controllers
 
             return Ok(response);
         }
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Budget>> GetBudgetById(int id)
+        [HttpGet("{budgetid}")]
+        public async Task<ActionResult<Budget>> GetBudgetById(int budgetid)
         {
-            var request = new GetBudgetByIdRequest { BudgetId = id };
+            var request = new GetBudgetByIdRequest { BudgetId = budgetid };
             var response = await _getBudgetById.ExecuteAsync(request);
 
             return Ok(response);
         }
-        [HttpPut("{id}")]
+        [HttpPut("{budgetid}")]
         public async Task<ActionResult<Budget>> Put(UpdateBudgetRequest request)
         {
             var response = await _updateBudget.ExecuteAsync(request);
 
             return Ok(response);
         }
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Budget>> Delete(int id)
+        [HttpDelete("{budgetid}")]
+        public async Task<ActionResult<Budget>> Delete(int budgetid)
         {
-            var request = new DeleteBudgetRequest { BudgetId = id };
+            var request = new DeleteBudgetRequest { BudgetId = budgetid };
             var response = await _deleteBudget.ExecuteAsync(request);
             return Ok(response);
         }

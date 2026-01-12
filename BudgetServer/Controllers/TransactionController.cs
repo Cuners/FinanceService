@@ -28,25 +28,25 @@ namespace TransactionServer.Controllers
             _deleteTransaction = deleteTransaction;
             _getTransactionById = getTransactionById;
         }
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactionByAccountId(int id)
+        [HttpGet("/api/Accounts/{accountId}/Transactions")]
+        public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactionByAccountId(int accountId)
         {
-            var request = new GetTransactionsByAccountIdRequest { AccountId = id };
+            var request = new GetTransactionsByAccountIdRequest { AccountId = accountId };
             var response = await _getTransactionByAccountId.ExecuteAsync(request);
 
             return Ok(response);
         }
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Transaction>> GetTransactionById(int id)
+        [HttpGet("{transactionid}")]
+        public async Task<ActionResult<Transaction>> GetTransactionById(int transactionid)
         {
-            var request = new GetTransactionByIdRequest { TransactionId = id };
+            var request = new GetTransactionByIdRequest { TransactionId = transactionid };
             var response = await _getTransactionById.ExecuteAsync(request);
             return Ok(response);
         }
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Transaction>> Delete(int id)
+        [HttpDelete("{transactionid}")]
+        public async Task<ActionResult<Transaction>> Delete(int transactionid)
         {
-            var request = new DeleteTransactionRequest { TransactionId = id };
+            var request = new DeleteTransactionRequest { TransactionId = transactionid };
             var response = await _deleteTransaction.ExecuteAsync(request);
             return Ok(response);
         }

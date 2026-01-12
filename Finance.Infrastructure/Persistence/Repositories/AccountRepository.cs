@@ -51,17 +51,5 @@ namespace Finance.Infrastructure.Persistence.Repositories
                 _context.Accounts.Remove(acc);
             }
         }
-
-        public async Task SaveChangesAsync()
-        {
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch(Exception ex)
-            {
-                var ax= ex.Message;
-            }
-        }
     }
 }

@@ -47,10 +47,5 @@ namespace Finance.Infrastructure.Persistence.Repositories
             if (acc != null)
                 _context.Budgets.Remove(acc);
         }
-
-        public async Task SaveChangesAsync()
-        {
-            await _context.SaveChangesAsync();
-        }
     }
 }

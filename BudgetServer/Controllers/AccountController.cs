@@ -58,11 +58,11 @@ namespace BudgetServer.Controllers
 
             return Ok(response);
         }
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Account>> GetAccountById(int id)
+        [HttpGet("{accountid}")]
+        public async Task<ActionResult<Account>> GetAccountById(int accountid)
         {
             
-            var request = new GetAccountByIdRequest { AccountId = id };
+            var request = new GetAccountByIdRequest { AccountId = accountid };
             var response = await _getAccountById.ExecuteAsync(request);
 
             return Ok(response);
@@ -71,19 +71,19 @@ namespace BudgetServer.Controllers
         public async Task<ActionResult> Create(CreateAccountRequest request)
         {
             var response = await _createAccount.ExecuteAsync(request);
-            return Ok(request);
+            return Ok(response);
         }
-        [HttpPut("{id}")]
+        [HttpPut("{accountid}")]
         public async Task<ActionResult<Account>> Put(UpdateAccountRequest request)
         {
             var response = await _updateAccount.ExecuteAsync(request);
 
             return Ok(response);
         }
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Account>> Delete(int id)
+        [HttpDelete("{accountid}")]
+        public async Task<ActionResult<Account>> Delete(int accountid)
         {
-            var request = new DeleteAccountRequest{ AccountId = id };
+            var request = new DeleteAccountRequest{ AccountId = accountid };
             var response = await _deleteAccount.ExecuteAsync(request);
             return Ok(response);
         }

@@ -23,6 +23,7 @@ namespace Finance.Infrastructure.Persistence.Repositories
         public async Task<IEnumerable<Category>> GetCategoriesById(List<int> ids)
         {
             return await _context.Categories
+                .AsNoTracking()
                 .Where(x => ids.Contains(x.CategoryId))
                 .ToListAsync();
         }
@@ -31,10 +32,6 @@ namespace Finance.Infrastructure.Persistence.Repositories
             return await _context.Categories
                 .AsNoTracking()
                 .ToListAsync();
-        }
-        public async Task SaveChangesAsync()
-        {
-            await _context.SaveChangesAsync();
         }
     }
 }
